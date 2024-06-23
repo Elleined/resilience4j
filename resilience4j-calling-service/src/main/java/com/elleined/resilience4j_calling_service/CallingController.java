@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class SimpleController {
+public class CallingController {
 
     /**
      * This is just a simple endpoint normally you would have complex endpoint here.
