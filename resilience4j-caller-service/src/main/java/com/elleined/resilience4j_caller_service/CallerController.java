@@ -7,20 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.logging.Logger;
-
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
 @Slf4j
-public class CallingController {
+public class CallerController {
 
     private final FeignCallingClient feignCallingClient;
 
     @GetMapping
     public String callingMethod() {
         String result = feignCallingClient.simpleEndpoint();
-        log.debug("Caller service successfully called the method in calling service which has resul of {}", result);
-        return result;
+        return "Caller service successfully called the method in calling service which has result of: " + result;
     }
 }
