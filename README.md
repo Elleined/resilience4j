@@ -108,3 +108,8 @@ Back to Open State (if needed): However, if that single appliance in the half-op
 - Bulkhead
 - Timelimiter
 - Cache
+
+
+https://www.baeldung.com/java-feign-client-exception-handling
+https://blog.devgenius.io/circuit-breaker-and-feign-client-implementation-in-spring-boot-3-1-zipkin-opentelemetry-46606aaded0c
+https://stackoverflow.com/questions/63299493/spring-cloud-feign-client-with-hystrix-circuit-breaker-timeout-defaults-in-2-sec
