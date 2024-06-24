@@ -15,17 +15,17 @@ public class CallerController {
 
     private final CallingFeignClient callingFeignClient;
 
-    @GetMapping
+    @GetMapping("/circuit-breaker")
     public String circuitBreaker() {
         return callingFeignClient.circuitBreaker();
     }
 
-    @GetMapping
+    @GetMapping("/retry")
     public String retry() {
         return callingFeignClient.retry();
     }
 
-    @GetMapping
+    @GetMapping("/circuit-breaker-and-retry")
     public String circuitBreakerAndRetry() {
         return callingFeignClient.circuitBreakerAndRetry();
     }
