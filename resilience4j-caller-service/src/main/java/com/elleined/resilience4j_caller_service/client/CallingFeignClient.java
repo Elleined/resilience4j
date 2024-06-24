@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface CallingFeignClient {
 
     @GetMapping("/circuit-breaker")
-    @CircuitBreaker(name = "defaultCircuitBreaker")
+    @CircuitBreaker(name = "default")
     String circuitBreaker();
 
     @GetMapping("/retry")
-    @Retry(name = "defaultRetry")
+    @Retry(name = "default")
     String retry();
 
     @GetMapping("/circuit-breaker-and-retry")
-    @CircuitBreaker(name = "defaultCircuitBreaker")
-    @Retry(name = "defaultRetry")
+    @CircuitBreaker(name = "default")
+    @Retry(name = "default")
     String circuitBreakerAndRetry();
 }
