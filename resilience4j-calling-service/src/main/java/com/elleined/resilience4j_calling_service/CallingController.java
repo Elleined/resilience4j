@@ -14,17 +14,17 @@ public class CallingController {
      * This method will we called by caller service via feign client.
      * @return String
      */
-    @GetMapping
+    @GetMapping("/circuit-breaker")
     public String circuitBreaker() {
         return "If you see this message meaning the call is success!";
     }
 
-    @GetMapping
+    @GetMapping("/retry")
     public String retry() {
         return "If you see this message meaning the call is success!";
     }
 
-    @GetMapping
+    @GetMapping("/circuit-breaker-and-retry")
     public String circuitBreakerAndRetry() {
         return "If you see this message meaning the call is success!";
     }

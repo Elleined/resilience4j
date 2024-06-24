@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 )
 public interface CallingFeignClient {
 
-    @GetMapping
-    @CircuitBreaker(name = "callingServiceCircuitBreaker", fallbackMethod = "circuitBreakerFallbackMethod")
+    @GetMapping("/circuit-breaker")
+    @CircuitBreaker(name = "defaultCircuitBreaker", fallbackMethod = "defaultCircuitBreakerFallback")
     String circuitBreaker();
 
-    @GetMapping
-    @Retry(name = "callingServiceRetry", fallbackMethod = "retryFallbackMethod")
+    @GetMapping("/retry")
+    @Retry(name = "defaultRetry", fallbackMethod = "defaultRetryFallback")
     String retry();
 
-    @GetMapping
-    @CircuitBreaker(name = "callingServiceCircuitBreaker", fallbackMethod = "circuitBreakerFallbackMethod")
-    @Retry(name = "callingServiceRetry", fallbackMethod = "retryFallbackMethod")
+    @GetMapping("/circuit-breaker-and-retry")
+    @CircuitBreaker(name = "defaultCircuitBreaker", fallbackMethod = "defaultCircuitBreakerFallback")
+    @Retry(name = "defaultRetry", fallbackMethod = "defaultRetryFallback")
     String circuitBreakerAndRetry();
 
     /**
@@ -31,11 +31,13 @@ public interface CallingFeignClient {
      * @param exception is used for the circuit breaker to call the fallback method
      * @return String
      */
-    default String circuitBreakerFallbackMethod(Exception exception) {
+    default String defaultCircuitBreakerFallback(Exception exception) {
+        System.out.println("Circuit breaker fallback method called");
         return "Circuit breaker fallback method called!";
     }
 
-    default String retryFallbackMethod(Exception exception) {
+    default String defaultRetryFallback(Exception exception) {
+        System.out.println("Retry fallback method called");
         return "Retry fallback method called";
     }
 }
