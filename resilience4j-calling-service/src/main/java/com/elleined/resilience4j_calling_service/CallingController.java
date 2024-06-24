@@ -15,7 +15,17 @@ public class CallingController {
      * @return String
      */
     @GetMapping
-    public String simpleEndpoint() {
-        return "Calling service successfully called!";
+    public String circuitBreaker() {
+        return "If you see this message meaning the call is success!";
+    }
+
+    @GetMapping
+    public String retry() {
+        return "If you see this message meaning the call is success!";
+    }
+
+    @GetMapping
+    public String circuitBreakerAndRetry() {
+        return "If you see this message meaning the call is success!";
     }
 }

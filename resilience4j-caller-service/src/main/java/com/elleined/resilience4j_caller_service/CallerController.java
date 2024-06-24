@@ -16,8 +16,17 @@ public class CallerController {
     private final CallingFeignClient callingFeignClient;
 
     @GetMapping
-    public String callingMethod() {
-        String result = callingFeignClient.simpleEndpoint();
-        return "Caller service successfully called the method in calling service which has result of: " + result;
+    public String circuitBreaker() {
+        return callingFeignClient.circuitBreaker();
+    }
+
+    @GetMapping
+    public String retry() {
+        return callingFeignClient.retry();
+    }
+
+    @GetMapping
+    public String circuitBreakerAndRetry() {
+        return callingFeignClient.circuitBreakerAndRetry();
     }
 }
