@@ -1,6 +1,6 @@
-package com.elleined.resilience4j_caller_service;
+package com.elleined.resilience4j_caller_service.controller.feign;
 
-import com.elleined.resilience4j_caller_service.client.CallingFeignClient;
+import com.elleined.resilience4j_caller_service.service.feign.CallingFeignClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/feign")
 @RequiredArgsConstructor
 @Slf4j
-public class CallerController {
+public class FeignCallerController {
 
     private final CallingFeignClient callingFeignClient;
 
