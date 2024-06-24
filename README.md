@@ -2,6 +2,7 @@
 Demo project that uses circuit breaker, retry, and rate limiter
 
 # Rate limiting @RateLimiter
+[Rate limiter deep dive](https://levelup.gitconnected.com/rate-limiting-in-spring-boot-52220ba272c6)
 - Is used to control the amount of requests in a specific time frame that the users can send in your api server.
 
 ## Advantages
@@ -23,12 +24,13 @@ Demo project that uses circuit breaker, retry, and rate limiter
 - After reaching the limit refresh period(100 request per 1 minute) how many seconds would you allow a requests to come in again and apply again the rate limit.
 
 # Retry @Retry
+[Retry deep dive](https://bootcamptoprod.com/spring-boot-resilience4j-retry/)
 - It is used to test whether the operation is totally a success/ failure or not.
 
 ## Retry workflow
 1. The users sends a request.
 2. The request might be a temporary failure due to network issues, overloaded server, or timeouts.
-3. It will attemps to resend the request based on specified logic after a predefined delay and number of retry.
+3. It will attempts to resend the request based on specified logic after a predefined delay and number of retry.
 4. If the request succeeds after a retry we are all happy.
 5. If the request failed after multiple retries based on your logic whether to notify the administrator etc...
 
@@ -99,17 +101,11 @@ Back to Open State (if needed): However, if that single appliance in the half-op
 
 # Related Links
 [Rate limit, Circuit Breaker, and Retry](https://github.com/shabbirdwd53/resilience4j)
-[Rate limiter deep dive](https://levelup.gitconnected.com/rate-limiting-in-spring-boot-52220ba272c6)
 [Retry and Circuit Breaker using Feign Client together](https://github.com/nitsbat/circuit-breaker)
 # The resilience4j will be in the caller of other api. For example the service a is calling the service b the resilience4j will be in service a the caller service.
 
 
 # Other modules
 - Bulkhead
-- Timelimiter
+- TimeLimiter
 - Cache
-
-
-https://www.baeldung.com/java-feign-client-exception-handling
-https://blog.devgenius.io/circuit-breaker-and-feign-client-implementation-in-spring-boot-3-1-zipkin-opentelemetry-46606aaded0c
-https://stackoverflow.com/questions/63299493/spring-cloud-feign-client-with-hystrix-circuit-breaker-timeout-defaults-in-2-sec

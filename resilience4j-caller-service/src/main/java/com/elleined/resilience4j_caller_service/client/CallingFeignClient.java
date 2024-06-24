@@ -7,37 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(
         value = "${calling-service.name}", // Just like when you are using the @Value to get value from application.properties
-        url = "${calling-service.base-url}" // Just like when you are using the @Value to get value from application.properties
+        url = "${calling-service.base-url}", // Just like when you are using the @Value to get value from application.properties
+        fallback = CallingFeignClientFallback.class // Will be used to handle the exceptions
 )
 public interface CallingFeignClient {
 
     @GetMapping("/circuit-breaker")
-    @CircuitBreaker(name = "defaultCircuitBreaker", fallbackMethod = "defaultCircuitBreakerFallback")
+    @CircuitBreaker(name = "defaultCircuitBreaker")
     String circuitBreaker();
 
     @GetMapping("/retry")
-    @Retry(name = "defaultRetry", fallbackMethod = "defaultRetryFallback")
+    @Retry(name = "defaultRetry")
     String retry();
 
     @GetMapping("/circuit-breaker-and-retry")
-    @CircuitBreaker(name = "defaultCircuitBreaker", fallbackMethod = "defaultCircuitBreakerFallback")
-    @Retry(name = "defaultRetry", fallbackMethod = "defaultRetryFallback")
+    @CircuitBreaker(name = "defaultCircuitBreaker")
+    @Retry(name = "defaultRetry")
     String circuitBreakerAndRetry();
-
-    /**
-     * Fall back method should have the same signature as of original method and just have added parameter of type Throwable
-     * And execute code here for properly handling the fallback method.
-     *
-     * @param exception is used for the circuit breaker to call the fallback method
-     * @return String
-     */
-    default String defaultCircuitBreakerFallback(Exception exception) {
-        System.out.println("Circuit breaker fallback method called");
-        return "Circuit breaker fallback method called!";
-    }
-
-    default String defaultRetryFallback(Exception exception) {
-        System.out.println("Retry fallback method called");
-        return "Retry fallback method called";
-    }
 }
