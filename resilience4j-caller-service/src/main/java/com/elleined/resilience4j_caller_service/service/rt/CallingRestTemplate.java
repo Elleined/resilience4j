@@ -20,20 +20,20 @@ public class CallingRestTemplate implements ExternalService {
     @Value("${calling-service.base-url}")
     private String callingServiceBaseURL;
 
-    @CircuitBreaker(name = "Default", fallbackMethod = "circuitBreakerFallback")
+    @CircuitBreaker(name = "default", fallbackMethod = "circuitBreakerFallback")
     public String circuitBreaker() {
         String endpoint = callingServiceBaseURL + "/" + "circuit-breaker";
         return restTemplate.getForObject(endpoint, String.class);
     }
 
-    @Retry(name = "Default", fallbackMethod = "retryFallback")
+    @Retry(name = "default", fallbackMethod = "retryFallback")
     public String retry() {
         String endpoint = callingServiceBaseURL + "/" + "retry";
         return restTemplate.getForObject(endpoint, String.class);
     }
 
-    @Retry(name = "Default", fallbackMethod = "retryFallback")
-    @CircuitBreaker(name = "Default", fallbackMethod = "circuitBreakerFallback")
+    @Retry(name = "default", fallbackMethod = "retryFallback")
+    @CircuitBreaker(name = "default", fallbackMethod = "circuitBreakerFallback")
     public String circuitBreakerAndRetry() {
         String endpoint = callingServiceBaseURL + "/" + "circuit-breaker-and-retry";
         return restTemplate.getForObject(endpoint, String.class);
