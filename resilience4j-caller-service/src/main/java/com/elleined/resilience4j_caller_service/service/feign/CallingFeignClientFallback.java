@@ -1,4 +1,4 @@
-package com.elleined.resilience4j_caller_service.client;
+package com.elleined.resilience4j_caller_service.service.feign;
 
 import org.springframework.stereotype.Component;
 

@@ -1,5 +1,6 @@
-package com.elleined.resilience4j_caller_service.client;
+package com.elleined.resilience4j_caller_service.service.feign;
 
+import com.elleined.resilience4j_caller_service.service.ExternalService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -8,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(
         value = "${calling-service.name}", // Just like when you are using the @Value to get value from application.properties
         url = "${calling-service.base-url}", // Just like when you are using the @Value to get value from application.properties
-        fallback = CallingFeignClientFallback.class // Will be used to handle the exceptions
+        fallback = CallingFeignClientFallback.class
 )
-public interface CallingFeignClient {
+public interface CallingFeignClient extends ExternalService {
 
     @GetMapping("/circuit-breaker")
     @CircuitBreaker(name = "default")
